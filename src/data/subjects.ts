@@ -30,6 +30,9 @@ export const SUBJECTS: SubjectMeta[] = [
       { id: 'opposites', title: 'Opposites Game', emoji: '🔄', description: 'Find the opposite word!' },
       { id: 'articles-grammar', title: 'Articles & Grammar', emoji: '📝', description: 'a / an and singular / plural!' },
       { id: 'sentence-builder', title: 'Sentence Builder', emoji: '🧩', description: 'Arrange words into a sentence!' },
+      { id: 'picture-word-choice', title: 'Circle the Word', emoji: '🖼️', description: 'See the picture, tap the right word!' },
+      { id: 'fill-in-blank', title: 'Fill in the Blank', emoji: '✏️', description: 'Choose the right word for the sentence!' },
+      { id: 'vowel-fill', title: 'Fill the Vowel', emoji: '🔤', description: 'Pick the missing vowel — a, e, i, o, u!' },
     ],
   },
   {

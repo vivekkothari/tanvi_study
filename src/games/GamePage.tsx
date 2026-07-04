@@ -14,6 +14,9 @@ import { WordMatch } from './english/WordMatch';
 import { Opposites } from './english/Opposites';
 import { ArticlesGrammar } from './english/ArticlesGrammar';
 import { SentenceBuilder } from './english/SentenceBuilder';
+import { PictureWordChoice } from './english/PictureWordChoice';
+import { FillInBlank } from './english/FillInBlank';
+import { VowelFill } from './english/VowelFill';
 import { SwarBoard } from './hindi/SwarBoard';
 import { VyanjanParade } from './hindi/VyanjanParade';
 import { HindiWordMatch } from './hindi/HindiWordMatch';
@@ -39,6 +42,9 @@ const GAMES: Record<string, ComponentType<{ topicId: string; subjectId: string }
   opposites: Opposites,
   'articles-grammar': ArticlesGrammar,
   'sentence-builder': SentenceBuilder,
+  'picture-word-choice': PictureWordChoice,
+  'fill-in-blank': FillInBlank,
+  'vowel-fill': VowelFill,
   'swar-board': SwarBoard,
   'vyanjan-parade': VyanjanParade,
   'hindi-word-match': HindiWordMatch,

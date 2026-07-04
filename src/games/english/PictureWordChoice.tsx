@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { GameShell, gameStyles as gs } from '../../components/GameShell';
 import { PICTURE_WORD_ITEMS } from '../../data/english';
 import { useGameFeedback } from '../../hooks/useGameFeedback';
@@ -32,36 +32,34 @@ function WordImage({ item }: { item: Item }) {
 export function PictureWordChoice({ topicId, subjectId }: Props) {
   const { level, wobble, onCorrect, attemptWrong, isMarkedWrong } = useGameFeedback(topicId);
   const { round: item, nextRound } = useGameRound(level, makeRound, (r) => r.word);
-  const [options] = useState(() => shuffle([item.word, item.wrong] as string[]));
-  const [currentOptions, setCurrentOptions] = useState<string[]>(() =>
-    shuffle([item.word, item.wrong] as string[]),
-  );
 
-  // Recompute options whenever the item changes
-  const itemKey = item.word + item.wrong;
+  // Derived directly from item — always in sync with the picture shown.
+  // useMemo re-shuffles only when the item changes, so ordering is stable mid-round.
+  const options = useMemo(
+    () => shuffle([item.word, item.wrong] as string[]),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [item.word, item.wrong],
+  );
 
   const choose = (opt: string) => {
     if (isMarkedWrong(opt)) return;
     if (opt === item.word) {
       onCorrect();
-      const nextItem = { ...item }; // nextRound will change item
       nextRound();
-      setCurrentOptions(shuffle([nextItem.word, nextItem.wrong]));
     } else {
       attemptWrong(opt);
     }
   };
 
-  void options;
-
   return (
     <GameShell title="Circle the Word" topicId={topicId} backTo={`/island/${subjectId}`}>
       <p className={gs.prompt}>Tap the correct word for the picture!</p>
       <div className={`${styles.pictureBox} ${wobble ? 'wobble' : ''}`}>
-        <WordImage key={itemKey} item={item} />
+        {/* key resets WordImage (and imgFailed state) for each new item */}
+        <WordImage key={item.word} item={item} />
       </div>
       <div className={gs.choices}>
-        {currentOptions.map((opt) => (
+        {options.map((opt) => (
           <button
             key={opt}
             type="button"

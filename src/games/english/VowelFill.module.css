@@ -1,0 +1,81 @@
+.card {
+  background: #e8f5e9;
+  border: 3px solid #a5d6a7;
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sentence {
+  font-size: clamp(1.25rem, 3.5vw, 1.65rem);
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.6;
+  color: #1b5e20;
+}
+
+.vowelSlot {
+  display: inline-block;
+  min-width: 32px;
+  text-align: center;
+  border-bottom: 3px solid #388e3c;
+  color: #388e3c;
+  font-weight: 900;
+  font-size: 1.4em;
+  margin: 0 2px;
+  transition: all 0.2s;
+}
+
+.vowelCorrect {
+  color: #1b5e20;
+  border-color: #1b5e20;
+  animation: popIn 0.3s ease-out;
+}
+
+@keyframes popIn {
+  0%   { transform: scale(0.7); }
+  60%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.wordHint {
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  font-weight: 900;
+  color: #2e7d32;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.hintBlank {
+  display: inline-block;
+  min-width: 28px;
+  text-align: center;
+  color: #f57f17;
+  border-bottom: 3px solid #f57f17;
+}
+
+.vowelBtn {
+  min-width: var(--tap-min);
+  min-height: var(--tap-min);
+  padding: 0.6rem 1.1rem;
+  border-radius: 14px;
+  font-size: 1.6rem;
+  font-weight: 900;
+  background: #fff;
+  border: 3px solid #a5d6a7;
+  box-shadow: var(--shadow);
+  color: #2e7d32;
+  text-transform: uppercase;
+  transition: transform 0.1s, background 0.1s;
+}
+
+.vowelBtn:active:not(:disabled) {
+  transform: scale(0.92);
+  background: #c8e6c9;
+}
