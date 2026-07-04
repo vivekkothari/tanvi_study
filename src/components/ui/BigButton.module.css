@@ -1,0 +1,44 @@
+.btn {
+  min-width: var(--tap-min);
+  min-height: var(--tap-min);
+  padding: 0.75rem 1.25rem;
+  border-radius: 16px;
+  font-size: var(--font-ui);
+  font-weight: 800;
+  color: #fff;
+  background: var(--accent, #ff8c42);
+  box-shadow: 0 4px 0 color-mix(in srgb, var(--accent, #ff8c42) 70%, #000);
+  transition: transform 0.1s ease;
+}
+
+.btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--accent, #ff8c42) 70%, #000);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.secondary {
+  background: #fff;
+  color: var(--text);
+  border: 3px solid #e0e0e0;
+  box-shadow: 0 4px 0 #e0e0e0;
+}
+
+.secondary:active {
+  box-shadow: 0 1px 0 #e0e0e0;
+}
+
+.ghost {
+  background: transparent;
+  color: var(--text);
+  box-shadow: none;
+  border: 3px solid transparent;
+}
+
+.ghost:active {
+  box-shadow: none;
+}

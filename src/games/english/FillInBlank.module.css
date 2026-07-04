@@ -1,0 +1,33 @@
+.card {
+  background: #fffde7;
+  border: 3px solid #ffe082;
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.sentence {
+  font-size: clamp(1.3rem, 4vw, 1.75rem);
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.6;
+  color: #333;
+}
+
+.blank {
+  display: inline-block;
+  min-width: 80px;
+  border-bottom: 3px solid #f9a825;
+  margin: 0 4px;
+  color: #f9a825;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  transition: color 0.2s;
+}
+
+.blankFilled {
+  color: #2e7d32;
+  border-color: #2e7d32;
+}

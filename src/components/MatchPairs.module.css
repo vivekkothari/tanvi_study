@@ -1,0 +1,162 @@
+.prompt {
+  font-size: clamp(1.2rem, 3.5vw, 1.7rem);
+  font-weight: 800;
+  text-align: center;
+}
+
+.arena {
+  position: relative;
+  display: flex;
+  gap: 2.5rem;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  max-width: 560px;
+  padding: 0.75rem 0;
+}
+
+.linesSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.lineCorrect {
+  stroke: #43a047;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  opacity: 0.85;
+  filter: drop-shadow(0 1px 3px rgba(67, 160, 71, 0.4));
+  animation: drawIn 0.25s ease-out;
+}
+
+.lineFlash {
+  stroke: #e53935;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-dasharray: 8 4;
+  animation: flashFade 0.7s ease-out forwards;
+}
+
+@keyframes drawIn {
+  from {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes flashFade {
+  0% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  align-items: stretch;
+  flex: 1;
+  min-width: 0;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  min-height: var(--tap-min);
+  padding: 0.7rem 0.9rem;
+  border-radius: 14px;
+  font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+  font-weight: 800;
+  border: 3px solid transparent;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition:
+    transform 0.12s,
+    box-shadow 0.12s,
+    border-color 0.12s,
+    background 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.card:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.leftCard {
+  background: #e8f4fd;
+  border-color: #90caf9;
+  color: #1565c0;
+}
+
+.leftCard:hover:not(:disabled):not(.cardMatched) {
+  background: #bbdefb;
+  border-color: #42a5f5;
+}
+
+.rightCard {
+  background: #fce4ec;
+  border-color: #f48fb1;
+  color: #880e4f;
+}
+
+.rightCard:hover:not(:disabled):not(.cardMatched) {
+  background: #f8bbd0;
+  border-color: #ec407a;
+}
+
+.cardSelected {
+  background: #fff176 !important;
+  border-color: #f9a825 !important;
+  color: #e65100 !important;
+  box-shadow:
+    0 0 0 3px rgba(249, 168, 37, 0.35),
+    0 2px 8px rgba(0, 0, 0, 0.12) !important;
+  transform: scale(1.05);
+}
+
+.cardMatched {
+  background: #e8f5e9 !important;
+  border-color: #81c784 !important;
+  color: #2e7d32 !important;
+  opacity: 0.85;
+  cursor: default;
+  box-shadow: none !important;
+}
+
+.hint {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #555;
+  text-align: center;
+  min-height: 1.5em;
+}
+
+@media (max-width: 420px) {
+  .arena {
+    gap: 1.25rem;
+  }
+
+  .column {
+    gap: 0.85rem;
+  }
+}

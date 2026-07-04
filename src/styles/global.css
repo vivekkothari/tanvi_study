@@ -1,0 +1,141 @@
+:root {
+  --font: 'Nunito', 'Noto Sans Devanagari', system-ui, sans-serif;
+  --bg: #fff8f0;
+  --sky: linear-gradient(180deg, #87ceeb 0%, #e0f7fa 40%, #fff8f0 100%);
+  --text: #2d3436;
+  --card: #ffffff;
+  --shadow: 0 8px 24px rgba(45, 52, 54, 0.12);
+  --radius: 20px;
+  --tap-min: 60px;
+  --font-ui: 1.5rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--sky);
+  background-attachment: fixed;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+.app-shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.screen-title {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 800;
+  text-align: center;
+  color: #5d4037;
+}
+
+.screen-subtitle {
+  font-size: var(--font-ui);
+  text-align: center;
+  color: #6d4c41;
+  margin-top: 0.25rem;
+}
+
+.hindi {
+  font-family: 'Noto Sans Devanagari', 'Nunito', sans-serif;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes wobble {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-10px) rotate(-3deg);
+  }
+  40% {
+    transform: translateX(10px) rotate(3deg);
+  }
+  60% {
+    transform: translateX(-8px) rotate(-2deg);
+  }
+  80% {
+    transform: translateX(8px) rotate(2deg);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.wobble {
+  animation: wobble 0.45s ease;
+}
+
+.bounce-in {
+  animation: bounce-in 0.45s ease;
+}
+
+.pop {
+  animation: pop 0.35s ease;
+}
