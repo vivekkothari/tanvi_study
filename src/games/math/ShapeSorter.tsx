@@ -37,7 +37,8 @@ export function ShapeSorter({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Shape Sorter" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Shape Sorter" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce={`Drag the ${round.shape.name} into the correct bin!`}>
       <p className={styles.prompt}>Drag the shape into the correct bin!</p>
       <div
         className={`${styles.draggable} ${wobble ? 'wobble' : ''}`}

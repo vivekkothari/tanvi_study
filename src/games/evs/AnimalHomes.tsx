@@ -28,7 +28,8 @@ export function AnimalHomes({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Animal Homes" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Animal Homes" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce={`Where does this animal live? ${round.target.animal}`}>
       <p className={styles.prompt}>Where does this animal live?</p>
       <div className={`${styles.bigEmoji} ${wobble ? 'wobble' : ''}`}>{round.target.animalEmoji}</div>
       <p style={{ fontSize: '1.5rem', fontWeight: 800 }}>{round.target.animal}</p>

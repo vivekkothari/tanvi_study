@@ -49,7 +49,8 @@ export function SentenceBuilder({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Sentence Builder" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Sentence Builder" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce="Arrange the words into a sentence">
       <div className={styles.bigEmoji}>{sentence.emoji}</div>
       <p className={styles.prompt}>Arrange the words into a sentence</p>
       <div className={`${styles.sentence} ${wobble ? 'wobble' : ''}`}>

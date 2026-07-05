@@ -50,7 +50,8 @@ export function AddSubtract({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Add & Subtract" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Add & Subtract" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce={`What is the answer? ${round.a} ${round.isAdd ? 'plus' : 'minus'} ${round.b}`}>
       <p className={styles.prompt}>What is the answer?</p>
       <div className={`${styles.objects} ${wobble ? 'wobble' : ''}`} style={{ fontSize: '2rem' }}>
         <span>{Array.from({ length: round.a }, () => round.emoji).join('')}</span>

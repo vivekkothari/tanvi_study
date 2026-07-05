@@ -19,7 +19,8 @@ export function AlphabetParade({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Alphabet Parade" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Alphabet Parade" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce={selected ? `${selected.letter} as in ${selected.word}` : "Tap a letter!"}>
       {selected ? (
         <div className={`${styles.detail} pop`}>
           <div className={styles.bigEmoji}>{selected.emoji}</div>

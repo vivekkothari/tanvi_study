@@ -36,7 +36,8 @@ export function CountTap({ topicId, subjectId }: Props) {
   const ones = round.count % 10;
 
   return (
-    <GameShell title="Count & Tap" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Count & Tap" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce="How many do you see?">
       <p className={styles.prompt}>How many do you see?</p>
       <div className={`${styles.objects} ${wobble ? 'wobble' : ''}`}>
         {round.count <= 20

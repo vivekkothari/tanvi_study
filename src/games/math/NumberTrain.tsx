@@ -53,7 +53,8 @@ export function NumberTrain({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Number Train" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Number Train" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce={`${round.prompt} ${round.display.map((n) => n === null ? 'blank' : String(n)).join(', ')}`}>
       <p className={styles.prompt}>{round.prompt}</p>
       <div className={`${styles.choices} ${wobble ? 'wobble' : ''}`}>
         {round.display.map((n, i) => (

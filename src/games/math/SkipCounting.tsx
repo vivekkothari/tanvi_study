@@ -37,7 +37,8 @@ export function SkipCounting({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Skip Counting Rocket" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Skip Counting Rocket" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce={`Count by ${round.step}s to launch!`}>
       <div className={styles.bigEmoji}>🚀</div>
       <p className={styles.prompt}>Count by {round.step}s to launch!</p>
       <div className={`${styles.choices} ${wobble ? 'wobble' : ''}`}>

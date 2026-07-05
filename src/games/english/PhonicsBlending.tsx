@@ -63,7 +63,8 @@ export function PhonicsBlending({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Phonics Blending" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Phonics Blending" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce={`Build the word by tapping letters. The word is: ${round.target}`}>
       <div className={styles.bigEmoji}>{round.target.emoji}</div>
       <p className={styles.prompt}>Build the word by tapping letters</p>
       <div className={`${styles.sentence} ${wobble ? 'wobble' : ''}`}>

@@ -38,7 +38,8 @@ export function VowelFill({ topicId, subjectId }: Props) {
   const parts = item.sentence.split('_');
 
   return (
-    <GameShell title="Fill the Vowel" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Fill the Vowel" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce={item.sentence.replace('_', 'blank')}>
       <p className={gs.prompt}>Tap the missing vowel!</p>
 
       <div className={`${styles.card} ${wobble ? 'wobble' : ''}`}>

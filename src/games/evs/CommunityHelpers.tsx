@@ -28,7 +28,8 @@ export function CommunityHelpers({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Community Helpers" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Community Helpers" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce={`Match the helper to their tool! ${round.target.helper}`}>
       <p className={styles.prompt}>Match the helper to their tool!</p>
       <div className={`${styles.bigEmoji} ${wobble ? 'wobble' : ''}`}>{round.target.helperEmoji}</div>
       <p style={{ fontSize: '1.5rem', fontWeight: 800 }}>{round.target.helper}</p>

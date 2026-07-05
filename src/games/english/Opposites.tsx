@@ -33,7 +33,8 @@ export function Opposites({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Opposites Game" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Opposites Game" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce={`What is the opposite of ${round.target.word}?`}>
       <div className={styles.bigEmoji}>{round.target.emoji}</div>
       <p className={styles.prompt}>
         What is the opposite of <strong>{round.target.word}</strong>?

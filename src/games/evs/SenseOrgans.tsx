@@ -26,7 +26,8 @@ export function SenseOrgans({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Sense Organs Quiz" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Sense Organs Quiz" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce={`Which sense organ do we use for this? ${round.target.cue}`}>
       <p className={styles.prompt}>Which sense organ do we use for this?</p>
       <div className={`${styles.bigEmoji} ${wobble ? 'wobble' : ''}`}>{round.target.cueEmoji}</div>
       <p style={{ fontSize: '1.4rem', fontWeight: 800 }}>{round.target.cue}</p>

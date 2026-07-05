@@ -48,7 +48,8 @@ export function ArticlesGrammar({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Articles & Grammar" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Articles & Grammar" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce={round.prompt}>
       <div className={`${styles.bigEmoji} ${wobble ? 'wobble' : ''}`}>{round.emoji}</div>
       <p className={styles.prompt}>{round.prompt}</p>
       <div className={styles.choices}>

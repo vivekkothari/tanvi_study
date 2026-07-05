@@ -25,7 +25,8 @@ export function LivingNonliving({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Living / Non-living" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Living / Non-living" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce={`Is this living or non-living? ${item.item}`}>
       <p className={styles.prompt}>Is this living or non-living?</p>
       <div className={`${styles.bigEmoji} ${wobble ? 'wobble' : ''}`}>{item.emoji}</div>
       <p style={{ fontSize: '1.5rem', fontWeight: 800 }}>{item.item}</p>

@@ -26,7 +26,8 @@ export function SeasonsWeather({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Seasons & Weather" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Seasons & Weather" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce={`Which season or weather is this? ${round.target.picture}`}>
       <p className={styles.prompt}>Which season or weather is this?</p>
       <div className={`${styles.bigEmoji} ${wobble ? 'wobble' : ''}`}>{round.target.pictureEmoji}</div>
       <p style={{ fontSize: '1.4rem', fontWeight: 800 }}>{round.target.picture}</p>

@@ -27,7 +27,8 @@ export function TwoLetterWords({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Two-letter Words" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Two-letter Words" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce="Pick the right matra to make the word">
       <p className={styles.prompt}>Pick the right matra to make the word</p>
       <div className={`${styles.detailWord} hindi`} style={{ fontSize: '2.5rem' }}>
         {round.target.word}

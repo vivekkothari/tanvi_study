@@ -30,7 +30,8 @@ export function HindiWordMatch({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Hindi Word Match" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Hindi Word Match" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce="Match the picture to the Hindi word!">
       <p className={styles.prompt}>Match the picture to the Hindi word!</p>
       <div className={`${styles.bigEmoji} ${wobble ? 'wobble' : ''}`}>{round.target.emoji}</div>
       <div className={styles.choices}>

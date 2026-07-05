@@ -28,7 +28,8 @@ export function WordMatch({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Word Match" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Word Match" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce="Match the picture to the word!">
       <p className={styles.prompt}>Match the picture to the word!</p>
       <div className={`${styles.bigEmoji} ${wobble ? 'wobble' : ''}`}>{round.target.emoji}</div>
       <div className={styles.choices}>

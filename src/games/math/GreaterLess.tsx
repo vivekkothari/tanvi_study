@@ -29,7 +29,8 @@ export function GreaterLess({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Greater / Less" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell title="Greater / Less" topicId={topicId} backTo={`/island/${subjectId}`}
+      announce={`Pick the correct symbol. Is ${round.a} greater than, less than, or equal to ${round.b}?`}>
       <p className={styles.prompt}>Pick the correct symbol</p>
       <div className={`${styles.choices} ${wobble ? 'wobble' : ''}`} style={{ fontSize: '2.5rem' }}>
         <span className={styles.choice}>{round.a}</span>
