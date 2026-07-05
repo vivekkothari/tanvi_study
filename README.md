@@ -39,14 +39,17 @@ Open the URL Vite prints (usually `http://localhost:5173`).
    - **Framework preset:** Vite
    - **Build command:** `npm run build`
    - **Build output directory:** `dist`
+   - **Deploy command:** leave **empty** (do not use `npx wrangler deploy`)
    - **Node version:** 20 (or later)
-4. Deploy. SPA routes are handled by `public/_redirects`.
+4. Deploy. Cloudflare Pages uploads `dist/` automatically after the build. SPA routes are handled by `public/_redirects`.
 
-### Option B — Wrangler CLI
+> **Important:** `npx wrangler deploy` is for Cloudflare **Workers**, not Pages. If you set it as the deploy command, the build will succeed but deployment will fail.
+
+### Option B — Wrangler CLI (manual deploy)
 
 ```bash
 npm run build
-npx wrangler pages deploy dist
+npx wrangler pages deploy dist --project-name tanvi-learning-world
 ```
 
 `wrangler.toml` is included with `pages_build_output_dir = "dist"`.
