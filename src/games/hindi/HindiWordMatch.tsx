@@ -3,6 +3,7 @@ import { HINDI_WORDS } from '../../data/hindi';
 import { useGameFeedback } from '../../hooks/useGameFeedback';
 import { useGameRound } from '../../hooks/useGameRound';
 import { pick, sample, shuffle } from '../../lib/random';
+import { speakHindi } from '../../lib/sound';
 
 type Props = { topicId: string; subjectId: string };
 
@@ -19,6 +20,7 @@ export function HindiWordMatch({ topicId, subjectId }: Props) {
 
   const choose = (word: string) => {
     if (isMarkedWrong(word)) return;
+    speakHindi(word);
     if (word === round.target.word) {
       onCorrect();
       nextRound();
@@ -38,6 +40,9 @@ export function HindiWordMatch({ topicId, subjectId }: Props) {
             type="button"
             className={`${styles.choice} hindi${isMarkedWrong(opt.word) ? ` ${styles.choiceWrong}` : ''}`}
             disabled={isMarkedWrong(opt.word)}
+            // Speak on hover (desktop) and on touch start (mobile)
+            onMouseEnter={() => speakHindi(opt.word)}
+            onTouchStart={() => speakHindi(opt.word)}
             onClick={() => choose(opt.word)}
           >
             {opt.word}

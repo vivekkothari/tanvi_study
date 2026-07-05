@@ -63,3 +63,48 @@ export const sound = {
     tone(1046.5, 0.25, 'sine', 0.14, 0.3);
   },
 };
+
+// ── Text-to-Speech ──────────────────────────────────────────────────────────
+
+let voicesLoaded = false;
+
+function ensureVoices(): Promise<SpeechSynthesisVoice[]> {
+  return new Promise((resolve) => {
+    const v = window.speechSynthesis.getVoices();
+    if (v.length > 0) { voicesLoaded = true; resolve(v); return; }
+    window.speechSynthesis.onvoiceschanged = () => {
+      voicesLoaded = true;
+      resolve(window.speechSynthesis.getVoices());
+    };
+  });
+}
+
+/**
+ * Speak `text` using the Web Speech API.
+ * @param lang  BCP-47 tag e.g. 'hi-IN' or 'en-US'. Defaults to 'en-US'.
+ * @param rate  Speech rate (0.5–2). Defaults to 0.85 (slightly slow for kids).
+ */
+export async function speak(text: string, lang = 'en-US', rate = 0.85): Promise<void> {
+  if (typeof window === 'undefined' || !window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+
+  const voices = voicesLoaded
+    ? window.speechSynthesis.getVoices()
+    : await ensureVoices();
+
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.lang = lang;
+  utt.rate = rate;
+
+  const voice =
+    voices.find((v) => v.lang === lang && v.localService) ??
+    voices.find((v) => v.lang === lang) ??
+    voices.find((v) => v.lang.startsWith(lang.split('-')[0])) ??
+    null;
+  if (voice) utt.voice = voice;
+
+  window.speechSynthesis.speak(utt);
+}
+
+export const speakHindi   = (text: string) => speak(text, 'hi-IN', 0.8);
+export const speakEnglish = (text: string) => speak(text, 'en-US', 0.85);
