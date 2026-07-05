@@ -1,4 +1,4 @@
-import { GameShell, gameStyles as gs } from '../../components/GameShell';
+import { GameShell, SpeakableChoice, gameStyles as gs } from '../../components/GameShell';
 import { FILL_BLANK_ITEMS } from '../../data/english';
 import { useGameFeedback } from '../../hooks/useGameFeedback';
 import { useGameRound } from '../../hooks/useGameRound';
@@ -12,15 +12,12 @@ function makeRound(_level: number): Item {
   return pick(FILL_BLANK_ITEMS as unknown as Item[]);
 }
 
-/** Render the sentence with the ___ replaced by a styled blank */
-function SentenceDisplay({ text, filled }: { text: string; filled?: string }) {
+function SentenceDisplay({ text }: { text: string }) {
   const parts = text.split('___');
   return (
     <p className={styles.sentence}>
       {parts[0]}
-      <span className={`${styles.blank} ${filled ? styles.blankFilled : ''}`}>
-        {filled ?? '___'}
-      </span>
+      <span className={styles.blank}>___</span>
       {parts[1]}
     </p>
   );
@@ -43,22 +40,25 @@ export function FillInBlank({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Fill in the Blank" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell
+      title="Fill in the Blank"
+      topicId={topicId}
+      backTo={`/island/${subjectId}`}
+      announce={item.sentence.replace('___', 'blank')}
+    >
       <p className={gs.prompt}>Choose the correct word!</p>
       <div className={`${styles.card} ${wobble ? 'wobble' : ''}`}>
         <SentenceDisplay text={item.sentence} />
       </div>
       <div className={gs.choices}>
         {options.map((opt) => (
-          <button
+          <SpeakableChoice
             key={opt}
-            type="button"
-            className={`${gs.choice}${isMarkedWrong(opt) ? ` ${gs.choiceWrong}` : ''}`}
+            label={opt}
+            wrong={isMarkedWrong(opt)}
             disabled={isMarkedWrong(opt)}
             onClick={() => choose(opt)}
-          >
-            {opt}
-          </button>
+          />
         ))}
       </div>
     </GameShell>

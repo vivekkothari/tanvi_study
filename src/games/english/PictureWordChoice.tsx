@@ -1,13 +1,13 @@
 import { useMemo, useState } from 'react';
-import { GameShell, gameStyles as gs } from '../../components/GameShell';
+import { GameShell, SpeakableChoice, gameStyles as gs } from '../../components/GameShell';
 import { PICTURE_WORD_ITEMS } from '../../data/english';
 import { useGameFeedback } from '../../hooks/useGameFeedback';
 import { useGameRound } from '../../hooks/useGameRound';
 import { pick, shuffle } from '../../lib/random';
+import { speakEnglish } from '../../lib/sound';
 import styles from './PictureWordChoice.module.css';
 
 type Props = { topicId: string; subjectId: string };
-
 type Item = (typeof PICTURE_WORD_ITEMS)[number];
 
 function makeRound(_level: number): Item {
@@ -33,8 +33,6 @@ export function PictureWordChoice({ topicId, subjectId }: Props) {
   const { level, wobble, onCorrect, attemptWrong, isMarkedWrong } = useGameFeedback(topicId);
   const { round: item, nextRound } = useGameRound(level, makeRound, (r) => r.word);
 
-  // Derived directly from item — always in sync with the picture shown.
-  // useMemo re-shuffles only when the item changes, so ordering is stable mid-round.
   const options = useMemo(
     () => shuffle([item.word, item.wrong] as string[]),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,23 +50,32 @@ export function PictureWordChoice({ topicId, subjectId }: Props) {
   };
 
   return (
-    <GameShell title="Circle the Word" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell
+      title="Circle the Word"
+      topicId={topicId}
+      backTo={`/island/${subjectId}`}
+      announce="Tap the correct word for the picture!"
+    >
       <p className={gs.prompt}>Tap the correct word for the picture!</p>
-      <div className={`${styles.pictureBox} ${wobble ? 'wobble' : ''}`}>
-        {/* key resets WordImage (and imgFailed state) for each new item */}
+      <div
+        className={`${styles.pictureBox} ${wobble ? 'wobble' : ''}`}
+        role="button"
+        tabIndex={0}
+        aria-label={`Picture of ${item.word}`}
+        onClick={() => speakEnglish(item.word)}
+        onKeyDown={(e) => e.key === 'Enter' && speakEnglish(item.word)}
+      >
         <WordImage key={item.word} item={item} />
       </div>
       <div className={gs.choices}>
         {options.map((opt) => (
-          <button
+          <SpeakableChoice
             key={opt}
-            type="button"
-            className={`${gs.choice}${isMarkedWrong(opt) ? ` ${gs.choiceWrong}` : ''}`}
+            label={opt}
+            wrong={isMarkedWrong(opt)}
             disabled={isMarkedWrong(opt)}
             onClick={() => choose(opt)}
-          >
-            {opt}
-          </button>
+          />
         ))}
       </div>
     </GameShell>

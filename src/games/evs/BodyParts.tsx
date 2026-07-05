@@ -3,6 +3,7 @@ import { BODY_PARTS } from '../../data/evs';
 import { useGameFeedback } from '../../hooks/useGameFeedback';
 import { useGameRound } from '../../hooks/useGameRound';
 import { pick, sample, shuffle } from '../../lib/random';
+import { speakEnglish } from '../../lib/sound';
 
 type Props = { topicId: string; subjectId: string };
 
@@ -27,8 +28,15 @@ export function BodyParts({ topicId, subjectId }: Props) {
     }
   };
 
+  const promptText = `Tap the ${round.target.name}!`;
+
   return (
-    <GameShell title="Body Parts Puzzle" topicId={topicId} backTo={`/island/${subjectId}`}>
+    <GameShell
+      title="Body Parts Puzzle"
+      topicId={topicId}
+      backTo={`/island/${subjectId}`}
+      announce={promptText}
+    >
       <p className={styles.prompt}>
         Tap the <strong>{round.target.name}</strong>!
       </p>
@@ -40,6 +48,8 @@ export function BodyParts({ topicId, subjectId }: Props) {
             className={`${styles.choice}${isMarkedWrong(part.id) ? ` ${styles.choiceWrong}` : ''}`}
             style={{ fontSize: '2.5rem', minWidth: 80, minHeight: 80 }}
             disabled={isMarkedWrong(part.id)}
+            onMouseEnter={() => speakEnglish(part.name)}
+            onTouchStart={() => speakEnglish(part.name)}
             onClick={() => choose(part.id)}
             aria-label={part.name}
           >
